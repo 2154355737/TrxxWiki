@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: '/TrxxWiki/',
   title: '修仙 Wiki',
   description: '修仙服务器玩法机制与指令大全',
   lang: 'zh-CN',
