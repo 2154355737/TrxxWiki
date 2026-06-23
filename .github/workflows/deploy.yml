@@ -36,6 +36,9 @@ jobs:
       - name: Build with VitePress
         run: npm run docs:build
 
+      - name: Create CNAME
+        run: echo "tr.wiki.knotting.asia" > .vitepress/dist/CNAME
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
