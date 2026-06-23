@@ -1,0 +1,54 @@
+/* Font Awesome 图标与 VitePress 整合样式 */
+
+/* 让 VPFeature 标题中的 FA 图标更美观 */
+.VPFeature .title .fa-solid,
+.VPFeature .title .fa-brands,
+.VPFeature .title .fa-regular {
+  margin-right: 8px;
+  color: var(--vp-c-brand-1);
+}
+
+/* navbar 中的图标样式 */
+.VPNavBarMenuLink .fa-solid,
+.VPNavBarMenuLink .fa-brands {
+  margin-right: 4px;
+}
+
+/* 侧边栏分组标题中的图标 */
+.VPSidebarItem .text .fa-solid,
+.VPSidebarItem .text .fa-brands,
+.VPSidebarItem .text .fa-regular {
+  margin-right: 4px;
+}
+
+/* 底部链接图标 */
+.VPFooter .message .fa-solid,
+.VPFooter .message .fa-brands {
+  margin-right: 4px;
+}
+
+/* 文档内容中的图表增强 */
+.vp-doc .fa-solid,
+.vp-doc .fa-brands,
+.vp-doc .fa-regular {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 暗色模式下图标颜色调亮 */
+html.dark .VPFeature .title .fa-solid,
+html.dark .VPFeature .title .fa-brands,
+html.dark .VPFeature .title .fa-regular {
+  color: var(--vp-c-brand-light);
+}
+
+/* 图标动画效果 */
+.VPFeature .fa-solid,
+.VPFeature .fa-brands {
+  transition: transform 0.3s ease;
+}
+
+.VPFeature:hover .fa-solid,
+.VPFeature:hover .fa-brands {
+  transform: scale(1.15);
+}

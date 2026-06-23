@@ -37,17 +37,17 @@ features:
     link: /guide/boss
 ---
 
-## 快速开始
+## <i class="fa-solid fa-forward-fast"></i> 快速开始
 
-### 作为新玩家
+### <i class="fa-solid fa-user-graduate"></i> 作为新玩家
 
-1. **觉醒灵根** — 进入服务器后自动检测灵根资质
-2. **开始修炼** — 使用修炼指令积累修为
-3. **突破练气** — 修为达标后尝试小阶突破
-4. **学习功法** — 达到练气期即可学习第一个功法
-5. **挑战Boss** — 击杀对应Boss解锁大境界突破
+1. <i class="fa-solid fa-seedling"></i> **觉醒灵根** — 进入服务器后自动检测灵根资质
+2. <i class="fa-solid fa-person-walking"></i> **开始修炼** — 使用修炼指令积累修为
+3. <i class="fa-solid fa-arrow-up-right-dots"></i> **突破练气** — 修为达标后尝试小阶突破
+4. <i class="fa-solid fa-book-skull"></i> **学习功法** — 达到练气期即可学习第一个功法
+5. <i class="fa-solid fa-dragon"></i> **挑战Boss** — 击杀对应Boss解锁大境界突破
 
-### 常用指令速查
+### <i class="fa-solid fa-terminal"></i> 常用指令速查
 
 | 指令 | 说明 |
 |------|------|
@@ -61,4 +61,4 @@ features:
 
 ---
 
-> ⚠️ **提示**：本Wiki基于当前服务器配置文件自动生成，具体数值以游戏内为准。
+> <i class="fa-solid fa-circle-exclamation"></i> **提示**：本Wiki基于当前服务器配置文件自动生成，具体数值以游戏内为准。
