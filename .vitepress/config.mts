@@ -56,6 +56,7 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: '算法公开', link: '/guide/suanfa' },
+          { text: '开发奉献列表', link: '/guide/zhizuo' },
         ]
       },
       {
