@@ -63,6 +63,7 @@ export default defineConfig({
         text: '🧪 开发测试',
         collapsed: false,
         items: [
+          { text: 'Bug 记录', link: '/guide/bug' },
           { text: '功能验证页面', link: '/guide/gongnengyanzheng' },
         ]
       },
