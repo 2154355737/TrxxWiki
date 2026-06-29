@@ -17,22 +17,22 @@ hero:
       link: /guide/danyao
 
 features:
-  - title: 🏔️ 九大境界
+  - title: <i class="fa-solid fa-mountain"></i> 九大境界
     details: 从凡人到飞升，经历练气、筑基、金丹、元婴、化神、渡劫、大乘，最终飞升仙界。每个大境界分9个小阶，层层突破。
     link: /guide/jingjie
-  - title: 🌿 六大灵根
+  - title: <i class="fa-solid fa-leaf"></i> 六大灵根
     details: 金、木、水、火、土五行灵根，以及万中无一的天灵根。不同灵根决定功法契合度和突破成功率。
     link: /guide/linggen
-  - title: ⚔️ 28种功法
+  - title: <i class="fa-solid fa-crosshairs"></i> 28种功法
     details: 攻击、防御、辅助、身法四大类型功法，从练气到大乘层层解锁。同灵根功法享受1.5倍威力加成。
     link: /guide/gongfa
-  - title: 💊 炼丹系统
+  - title: <i class="fa-solid fa-capsules"></i> 炼丹系统
     details: 突破丹、渡劫丹、治疗丹、恢复丹四大丹药体系，四种品质（下阶→极品），炼丹有风险，高级丹药失败会受伤！
     link: /guide/danyao
-  - title: ☯️ 天道系统
+  - title: <i class="fa-solid fa-yin-yang"></i> 天道系统
     details: 功德积累提升天道境界：有德→积善→天道眷顾→代天行道→天人合一。获得突破加成、渡劫减伤等增益。
     link: /guide/tiandao
-  - title: 👹 Boss强化
+  - title: <i class="fa-solid fa-skull"></i> Boss强化
     details: Boss随修士等级动态缩放，弹幕系统全面魔改。每个Boss专属技能和台词，让战斗更具挑战性。
     link: /guide/boss
 ---

@@ -20,17 +20,17 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: '🚀 新手指南',
+        text: '新手指南',
         collapsed: false,
         items: [
           { text: '首页', link: '/' },
-          { text: '📖 指令教程', link: '/guide/jiaocheng' },
+          { text: '指令教程', link: '/guide/jiaocheng' },
           { text: '修炼系统', link: '/guide/xiulian' },
           { text: '常用指令', link: '/guide/zhiling' },
         ]
       },
       {
-        text: '⚙️ 核心系统',
+        text: '核心系统',
         collapsed: false,
         items: [
           { text: '修仙境界', link: '/guide/jingjie' },
@@ -41,7 +41,7 @@ export default defineConfig({
         ]
       },
       {
-        text: '🔮 进阶机制',
+        text: '进阶机制',
         collapsed: false,
         items: [
           { text: '天道系统', link: '/guide/tiandao' },
@@ -51,7 +51,7 @@ export default defineConfig({
         ]
       },
       {
-        text: '📐 参考资料',
+        text: '参考资料',
         collapsed: false,
         items: [
           { text: '算法公开', link: '/guide/suanfa' },
@@ -59,7 +59,7 @@ export default defineConfig({
         ]
       },
       {
-        text: '🧪 开发测试',
+        text: '开发测试',
         collapsed: false,
         items: [
           { text: 'Bug 记录', link: '/guide/bug' },
@@ -67,7 +67,7 @@ export default defineConfig({
         ]
       },
       {
-        text: '📋 历史版本',
+        text: '历史版本',
         collapsed: false,
         items: [
           { text: 'Bug修复报告 (2026-06-23)', link: '/guide/lishibug' },

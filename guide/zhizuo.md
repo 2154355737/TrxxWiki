@@ -4,7 +4,7 @@
 
 ---
 
-## 👤 插件作者
+## <i class="fa-solid fa-user"></i> 插件作者
 
 | 头像 | 作者 | QQ | GitHub |
 |:----:|------|:----:|:------:|
@@ -12,7 +12,7 @@
 
 ---
 
-## 👥 开发贡献者
+## <i class="fa-solid fa-users"></i> 开发贡献者
 
 <div class="contributors">
 
@@ -28,7 +28,7 @@
 
 ---
 
-## 📦 依赖库
+## <i class="fa-solid fa-box"></i> 依赖库
 
 | 库 | 版本 | 说明 |
 |----|------|------|
@@ -39,7 +39,7 @@
 
 ---
 
-## 🖥️ 框架
+## <i class="fa-solid fa-desktop"></i> 框架
 
 本插件基于 **[TShock](https://github.com/Pryaxis/TShock)** 框架开发。
 
@@ -68,7 +68,7 @@ public class CultivationPlugin : TerrariaPlugin
 
 ---
 
-## 📝 参考 & 致谢
+## <i class="fa-solid fa-pen-to-square"></i> 参考 & 致谢
 
 - **原作者**：感谢插件原作者对修仙玩法系统的设计与实现
 - **TShock 社区**：[https://github.com/Pryaxis/TShock](https://github.com/Pryaxis/TShock)
@@ -77,7 +77,7 @@ public class CultivationPlugin : TerrariaPlugin
 
 ---
 
-## 🔗 相关页面
+## <i class="fa-solid fa-link"></i> 相关页面
 
 - [Bug修复报告](/guide/lishibug) — 已修复和待修复的Bug清单
 - [功能验证页面](/guide/gongnengyanzheng) — 各功能模块验证状态追踪

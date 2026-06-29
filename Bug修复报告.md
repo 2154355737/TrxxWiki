@@ -26,22 +26,22 @@
 
 ## 二、已修复的 Bug（正面变更）
 
-### Bug #1 ✅ 境界突破后属性不刷新
+### Bug #1 <i class="fa-solid fa-check"></i> 境界突破后属性不刷新
 **文件**: `Systems/BreakthroughSystem.cs`  
 **问题**: 突破成功/失败导致境界变化后，玩家的 HP/魔力上限没有立即刷新，需要等到下一次 OnGameUpdate 周期（1秒间隔）。玩家在这 1 秒内可能以旧的血量上限被击杀。  
 **修复**: 在三处突破逻辑中（失败倒退回退、小境界晋升、大境界晋升）添加了 `_mgr.ApplyCultivationStats(player, data)`，立即同步属性到 Terraria 客户端。
 
-### Bug #2 ✅ 渡劫死亡检测不完善
+### Bug #2 <i class="fa-solid fa-check"></i> 渡劫死亡检测不完善
 **文件**: `Systems/TribulationSystem.cs`  
 **问题**: 渡劫期间仅通过 `statLife <= 0` 判断死亡，但 Terraria 存在帧延迟：死亡动画播放时 `statLife` 可能尚未归零，但 `player.TPlayer.dead` 已为 `true`。导致天雷击杀判定延迟 1-2 帧，玩家可能多挨一雷。  
 **修复**: 死亡检测改为 `player.TPlayer.statLife <= 0 || player.TPlayer.dead`。
 
-### Bug #3 ✅ 渡劫失败后"死后复活"
+### Bug #3 <i class="fa-solid fa-check"></i> 渡劫失败后"死后复活"
 **文件**: `Systems/TribulationSystem.cs`  
 **问题**: 渡劫失败时 `FailTribulation` 强制将生命设为 `Math.Max(1, ...)` 。如果玩家已被天雷击杀（`statLife <= 0`），此操作会将死去的玩家生命设回正数，造成"死了又活了"的异常状态。  
 **修复**: 添加守卫条件 `if (player.TPlayer.statLife > 0 && !player.TPlayer.dead)`，只在玩家存活时扣血惩罚。
 
-### Bug #4 ✅ 每 Tick 覆写 statLifeMax/statManaMax 导致原版生命成长被清零
+### Bug #4 <i class="fa-solid fa-check"></i> 每 Tick 覆写 statLifeMax/statManaMax 导致原版生命成长被清零
 **文件**: `Systems/CultivationManager.cs`（核心重构）  
 **问题**: 旧逻辑 `ApplyCachedStats` 每 tick 写入 `tPlayer.statLifeMax = cp.CachedMaxLife`（修仙后的绝对值，如 100+500=600）。但 Terraria 的 `Player.Update()` 会在每 tick 开始前将 `statLifeMax2` 同步到 `statLifeMax`。这意味着玩家原版生命水晶(+20×15=300)、生命果(+5×20=100) 提供的上限会被每 tick 覆盖为固定值 600，原版成长完全失效。
 
@@ -60,27 +60,27 @@
 - 只在登录、突破、重载配置时写入 `statLifeMax`/`statManaMax`
 - 每 tick 只写 `statDefense` 和 `moveSpeed`（动态属性）
 
-### Bug #5 ✅ 丹药回血/回蓝上限使用错误的字段
+### Bug #5 <i class="fa-solid fa-check"></i> 丹药回血/回蓝上限使用错误的字段
 **文件**: `Systems/PillSystem.cs`  
 **问题**: 丹药回血使用 `statLifeMax` 作为上限，但在修仙加成场景下，`statLifeMax2` 可能比 `statLifeMax` 更大（用于 UI 显示）。使用较小值导致丹药无法回满。  
 **修复**: 使用 `Math.Max(statLifeMax, statLifeMax2)` 和 `Math.Max(statManaMax, statManaMax2)`。
 
-### Bug #6 ✅ 生命恢复上限使用错误字段
+### Bug #6 <i class="fa-solid fa-check"></i> 生命恢复上限使用错误字段
 **文件**: `Systems/CultivationManager.cs`  
 **问题**: 生命恢复回血使用 `statLifeMax` 作为上限，导致带修仙加成的玩家回血被过早截断。  
 **修复**: 改为 `tPlayer.statLifeMax2`（第 617 行附近）。
 
-### Bug #7 ✅ 非渡劫死亡后 JustFailedTribulation 标志未清除
+### Bug #7 <i class="fa-solid fa-check"></i> 非渡劫死亡后 JustFailedTribulation 标志未清除
 **文件**: `Systems/CultivationManager.cs`  
 **问题**: 渡劫失败时设置 `JustFailedTribulation = true`，但如果玩家在非渡劫状态下死亡，该标志不会被重置，导致下次突破判定异常。  
 **修复**: 玩家死亡时，若非渡劫状态，设置 `data.JustFailedTribulation = false`。
 
-### Bug #8 ✅ 凡人境界功法学习判定问题
+### Bug #8 <i class="fa-solid fa-check"></i> 凡人境界功法学习判定问题
 **文件**: `Models/Technique.cs` + `Systems/SkillSystem.cs`  
 **问题**: 旧的 `GetLearnable` 判定 `t.RequiredSubLevel <= subLevel` 在 `tier == RealmTier.Mortal` 和 `t.RequiredRealm == RealmTier.Mortal` 且 `subLevel == 0` 时意外通过（0 <= 0），但逻辑不够清晰。  
 **修复**: 抽取 `MeetsRequirement()` 方法，明确处理凡人境界（`tier > Mortal ? Math.Max(1, subLevel) : subLevel`），统一供 `GetLearnable` 和 `SkillSystem` 使用。
 
-### Bug #9 ✅ Buff/Projectile 硬编码 ID 迁移为命名常量
+### Bug #9 <i class="fa-solid fa-check"></i> Buff/Projectile 硬编码 ID 迁移为命名常量
 **文件**: `Models/Technique.cs` + `Systems/BossProjectileSystem.cs` + `Models/RealmEquipmentConfig.cs`  
 **问题**: 大量魔法数字（如 `BuffId = 36`、`ProjectileId = 272`、`R(65, desc: "星怒")`）难以阅读和维护。  
 **修复**: 添加 `MigrateKnownBuffIds()` 和 `MigrateKnownProjectileIds()` 进行存量数据迁移，新配置统一使用 `BuffID.XXX` / `ProjectileID.XXX` / `ItemID.XXX` 命名常量。
@@ -89,7 +89,7 @@
 
 ## 三、潜在风险与需验证项
 
-### 风险 #1 ⚠️ "渡劫"境界 Metal 奖励物品可能变更
+### 风险 #1 <i class="fa-solid fa-triangle-exclamation"></i> "渡劫"境界 Metal 奖励物品可能变更
 **文件**: `Models/RealmEquipmentConfig.cs`  
 **位置**: "渡劫" (Tribulation) → rewards → metal  
 **变更**:
@@ -101,7 +101,7 @@
 
 **建议**: 确认设计意图——"渡劫" metal 应该发放战士徽章还是复仇者徽章？如果是战士徽章，则本次修复了原 Bug；如果是复仇者徽章，则需改为 `R(ItemID.AvengerEmblem, desc: "复仇者徽章")`。
 
-### 风险 #2 ⚠️ "炼气"境界 Heavenly 奖励物品ID修复
+### 风险 #2 <i class="fa-solid fa-triangle-exclamation"></i> "炼气"境界 Heavenly 奖励物品ID修复
 **文件**: `Models/RealmEquipmentConfig.cs`  
 **位置**: "炼气" (QiCondensation) → rewards → heavenly  
 **变更**:
@@ -111,7 +111,7 @@
 ```
 **分析**: 原代码中 ID 50 是 `MagicMissile`（魔法导弹），描述"云瓶"（Cloud in a Bottle）应为 ID 53。`ItemID.CloudinaBottle` 正确映射到 Cloud in a Bottle。这是原始 Bug 的修复，但需确认 `ItemID.CloudinaBottle` 在目标 Terraria 版本中是否确实存在且指向正确 ID。
 
-### 风险 #3 ⚠️ "大乘"境界 Common 奖励碎片数量变更
+### 风险 #3 <i class="fa-solid fa-triangle-exclamation"></i> "大乘"境界 Common 奖励碎片数量变更
 **文件**: `Models/RealmEquipmentConfig.cs`  
 **位置**: "大乘" (GreatVehicle) → common  
 **变更**:
@@ -127,7 +127,7 @@
 
 **建议**: 确认 ID 3601 对应什么物品，以及 4 种碎片各 10 个是否为设计意图。
 
-### 风险 #4 ⚠️ 功法"灵气弹"所需小境界从 1 改为 0
+### 风险 #4 <i class="fa-solid fa-triangle-exclamation"></i> 功法"灵气弹"所需小境界从 1 改为 0
 **文件**: `Models/Technique.cs`  
 **变更**:
 ```
@@ -136,7 +136,7 @@
 ```
 **分析**: 新玩家初始 `SubLevel = 0`，旧逻辑到 `SubLevel = 1` 才能学习第一个技能，现在变为 SubLevel ≥ 0 即可。这是否为设计意图？配合新的 `MeetsRequirement` 逻辑（凡人境界下 `subLevel` 不作 `Max(1, ...)` 处理），可能改变了新手引导流程。
 
-### 风险 #5 ⚠️ 聊天颜色全部变为白色
+### 风险 #5 <i class="fa-solid fa-triangle-exclamation"></i> 聊天颜色全部变为白色
 **文件**: `Utils/CombatIntegration.cs`  
 **变更**:
 ```
@@ -148,7 +148,7 @@
 
 **建议**: 确认是否为设计意图——可能为了避免 Chat Tag 和 Broadcast Color 双重着色导致的颜色叠加问题。
 
-### 风险 #6 ⚠️ `ApplyMaxStatBonuses` 中 `statLifeMax2` 仅上调不下调
+### 风险 #6 <i class="fa-solid fa-triangle-exclamation"></i> `ApplyMaxStatBonuses` 中 `statLifeMax2` 仅上调不下调
 **文件**: `Systems/CultivationManager.cs`  
 **代码**:
 ```csharp
@@ -157,7 +157,7 @@ if (tPlayer.statLifeMax2 < desiredLifeMax)
 ```
 **分析**: 当修仙加成减少时（如突破失败降阶），`desiredLifeMax` 可能小于当前 `statLifeMax2`，但此逻辑不会下调 `statLifeMax2`。这可能导致 UI 显示的血量上限大于实际最大值 `statLifeMax`。不过 `statLifeMax2` 的语义是"历史最大生命值"，不下调可能符合 Terraria 原版行为。
 
-### 风险 #7 ⚠️ `Healing` 丹药使用 `Math.Max(statLifeMax, statLifeMax2)` 可能在边界情况下出错
+### 风险 #7 <i class="fa-solid fa-triangle-exclamation"></i> `Healing` 丹药使用 `Math.Max(statLifeMax, statLifeMax2)` 可能在边界情况下出错
 **文件**: `Systems/PillSystem.cs`  
 **代码**:
 ```csharp
